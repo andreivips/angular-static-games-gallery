@@ -32,7 +32,7 @@ export class GamesService {
         .filter(game => (
           filterStrict ?
             game[filterCol] === filterVal :
-            game[filterCol].indexOf(filterVal) !== -1
+            game[filterCol].toLowerCase().indexOf(filterVal) !== -1
         ))
         .sort((a: any, b: any) => (a[sortCol] - b[sortCol]))
       ),
