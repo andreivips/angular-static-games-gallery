@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // NgModel lives here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
 
