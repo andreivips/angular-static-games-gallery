@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { Game } from './game';
 import { GAMES } from './games.data';
 import { SearchResult } from '../shared/interfaces';
-import { defaultPageSize } from '../shared/defaults';
+import { defaultPageSize, defaultFilter, defaultSorting } from '../shared/defaults';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,11 @@ export class GamesService {
   searchGames(
     pageNr: number = 1,
     pageSize: number = defaultPageSize,
-    filterCol: string,
-    filterVal: string,
-    filterStrict: boolean,
-    sortCol: string,
-    sortDir: string,
+    filterCol: string = defaultFilter.column,
+    filterVal: string = defaultFilter.value,
+    filterStrict: boolean = defaultFilter.strict,
+    sortCol: string = defaultSorting.column,
+    sortDir: string = defaultSorting.direction
   ): SearchResult<Game> {
     let total = 0;
     let data: Game[] = [];
