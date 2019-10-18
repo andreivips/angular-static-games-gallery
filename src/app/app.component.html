@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutAlign="space-between stretch">
+
+  <mat-toolbar fxLayout="row" fxLayoutAlign="center center" color="primary">
+    <mat-button-toggle-group>
+      <mat-button-toggle
+        value="games"
+        routerLink="/games"
+        routerLinkActive="mat-button-toggle-checked"
+      >Games</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-toolbar>
+
+  <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+
+  <!--
+    fxFill
+    fxFlexAlign="end"
+  -->
+
+</div>
