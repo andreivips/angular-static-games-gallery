@@ -12,7 +12,9 @@ import {
   MatSelectModule,
   MatCheckboxModule,
   MatExpansionModule,
-  MatCardModule,
+  // MatGridListModule,
+  // MatCardModule,
+  // MatTableModule,
 
 } from '@angular/material';
 
@@ -31,7 +33,6 @@ import {
     MatSelectModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatCardModule,
 
   ],
   exports: [
@@ -47,7 +48,6 @@ import {
     MatSelectModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatCardModule,
 
   ]
 })

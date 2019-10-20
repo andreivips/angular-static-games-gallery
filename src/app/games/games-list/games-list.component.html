@@ -1,6 +1,6 @@
 <div fxLayout="column">
 
-<mat-toolbar fxLayout="row" fxFlex="10" >
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxFlex="10" >
 
   <mat-toolbar-row fxFlex="25" fxLayout="column" fxLayoutAlign="center stretch">
     <mat-form-field class="example-form-field">
@@ -11,19 +11,20 @@
   <mat-toolbar-row fxFlex="25" fxLayout="column" fxLayoutAlign="center stretch">
     <mat-form-field>
       <mat-select [(ngModel)]="filterCol">
-        <mat-option *ngFor="let dataColumn of dataColumns" [value]="dataColumn">{{ dataColumn }}</mat-option>
+        <mat-option *ngFor="let dataColumn of dataColumns" [value]="dataColumn">{{dataColumn}}</mat-option>
       </mat-select>
     </mat-form-field>
   </mat-toolbar-row>
 
-  <mat-toolbar-row fxFlex="25" fxLayout="column" fxLayoutAlign="center start">
+  <mat-toolbar-row fxFlex="25" fxLayout="row" fxLayoutAlign="center center">
     <mat-checkbox [(ngModel)]="filterStrict">Strict search</mat-checkbox>
   </mat-toolbar-row>
 
   <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="end center">
-      <button mat-raised-button (click)="reset()">Reset</button>
+    <button mat-raised-button (click)="reset()">Reset</button>
     <button mat-raised-button fxFlexOffset="5" (click)="searchGames()">Find</button>
   </mat-toolbar-row>
+
 </mat-toolbar>
 
 <h3 fxFlex="80" *ngIf="!games.length">Nothing found</h3>
@@ -32,63 +33,83 @@
     *ngFor="let game of games"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{game.name}}
+      <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+        <div
+          class="mat-card-avatar"
+          [ngStyle]="{'background-image': 'url(' + game.icon_2 + ')','background-size':'cover'}"
+        ></div>
+        <div fxFlexOffset="1">
+          {{game.name}}
+        </div>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
-    <mat-card class="example-card">
-
-      <mat-card-header>
-        <div
-          mat-card-avatar
-          [ngStyle] = "{
-            'style.background-image': game.icon_2,
-            'style.background-size': 'cover'
-          }"
-        ></div>
-        <!-- <mat-card-title>{{game.name}}</mat-card-title> -->
-        <!-- <mat-card-subtitle>Id-Provider: ({{game.id}}-{{game.provider}})</mat-card-subtitle> -->
-      </mat-card-header>
-      <img mat-card-image src="{{game.icon_2}}" alt="Photo">
-      <!--
-        <mat-card-content>
-          <p></p>
-        </mat-card-content>
-      -->
-      <!--
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      -->
-    </mat-card>
+    <table>
+      <tr>
+        <td>id</td>
+        <td>{{game.id}}</td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td>{{game.status}}</td>
+      </tr>
+      <tr>
+        <td>ratio</td>
+        <td>{{game.ratio}}</td>
+      </tr>
+      <tr>
+        <td>provider</td>
+        <td>{{game.provider}}</td>
+      </tr>
+      <tr>
+        <td>has_age_restriction</td>
+        <td>{{game.has_age_restriction}}</td>
+      </tr>
+    </table>
 
   </mat-expansion-panel>
 
 </mat-accordion>
 
-<mat-toolbar fxLayout="row" fxFill>
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxFill>
 
-  <mat-toolbar-row fxFlex="25" fxLayout="column" fxLayoutAlign="center stretch">
-    Page {{pageNr}} of {{totalPages}}, {{totalFound}} games found
+  <mat-toolbar-row fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
+    {{pageNr}}/{{totalPages}} ({{totalFound}})
   </mat-toolbar-row>
 
-  <mat-toolbar-row fxFlex="50" fxLayout="row" fxLayoutAlign="center center">
+  <mat-toolbar-row fxFlex="35" fxLayout="row" fxLayoutAlign="center center">
     <div>
       Per page:
     </div>
     <mat-form-field fxFlexOffset="5">
-      <mat-select [(ngModel)]="pageSize">
-        <mat-option *ngFor="let ps of pageSizes" [value]="ps">{{ ps }}</mat-option>
+      <mat-select [(ngModel)]="pageSize" (selectionChange)="searchGames(1)">
+        <mat-option *ngFor="let ps of pageSizes" [value]="ps">{{ps}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row fxFlex="35" fxLayout="row" fxLayoutAlign="center center">
+    <div>
+      Sort:
+    </div>
+    <mat-form-field fxFlexOffset="5">
+      <mat-select [(ngModel)]="sortCol" (selectionChange)="searchGames(1)">
+        <mat-option *ngFor="let dataColumn of dataColumns" [value]="dataColumn">{{dataColumn}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlexOffset="5">
+      <mat-select [(ngModel)]="sortDir" (selectionChange)="searchGames(1)">
+        <mat-option value="asc">asc</mat-option>
+        <mat-option value="desc">desc</mat-option>
       </mat-select>
     </mat-form-field>
   </mat-toolbar-row>
 
   <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="end center">
-      <button mat-raised-button (click)="prevPage()">Prev</button>
-    <button mat-raised-button fxFlexOffset="5" (click)="nextPage()">Next</button>
+    <button mat-raised-button (click)="prevPage()" autocomplete="off" [disabled]="pageNr==1">Prev</button>
+    <button mat-raised-button fxFlexOffset="5" (click)="nextPage()" autocomplete="off" [disabled]="pageNr==totalPages">Next</button>
   </mat-toolbar-row>
+
 </mat-toolbar>
 
 </div>

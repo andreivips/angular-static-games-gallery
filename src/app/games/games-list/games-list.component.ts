@@ -6,7 +6,8 @@ import { defaultFilter, defaultSorting, defaultPageSize, pageSizes } from '../..
 
 @Component({
   selector: 'app-games-list',
-  templateUrl: './games-list.component.html'
+  templateUrl: './games-list.component.html',
+  styleUrls: ['./games-list.component.css'],
 })
 export class GamesListComponent implements OnInit {
   games: Game[];
@@ -36,7 +37,8 @@ export class GamesListComponent implements OnInit {
     this.reset();
   }
 
-  searchGames(): void {
+  searchGames(pageNr?: number): void {
+    if (pageNr) { this.pageNr = pageNr; }
     const find = this.gamesService.searchGames(
       this.pageNr,
       this.pageSize,
@@ -51,12 +53,12 @@ export class GamesListComponent implements OnInit {
     this.totalPages = Math.ceil(this.totalFound / this.pageSize);
   }
 
-  nextPage(): void {
-    this.pageNr++;
-    this.searchGames();
-  }
   prevPage(): void {
     this.pageNr--; // check for disabled
+    this.searchGames();
+  }
+  nextPage(): void {
+    this.pageNr++;
     this.searchGames();
   }
 
@@ -72,4 +74,3 @@ export class GamesListComponent implements OnInit {
   }
 
 }
-

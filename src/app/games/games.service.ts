@@ -34,7 +34,7 @@ export class GamesService {
             game[filterCol] === filterVal :
             game[filterCol].toLowerCase().indexOf(filterVal) !== -1
         ))
-        .sort((a: any, b: any) => (a[sortCol] - b[sortCol]))
+        .sort((a: any, b: any) => a[sortCol].trim().localeCompare(b[sortCol].trim()))
       ),
       map(games => sortDir === 'desc' ? games.reverse() : games),
       tap(games => total = games.length),

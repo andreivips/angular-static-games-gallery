@@ -1,10 +1,10 @@
 import { Filter, Sorting } from './interfaces';
 
 export const defaultPageSize = 5;
-
 export const pageSizes: number[] = [
   5,
-  10
+  10,
+  25
 ];
 
 export const defaultFilter: Filter = {
@@ -14,6 +14,6 @@ export const defaultFilter: Filter = {
 };
 
 export const defaultSorting: Sorting = {
-  column: 'id',
-  direction: 'desc'
+  column: 'name',
+  direction: 'asc'
 };
