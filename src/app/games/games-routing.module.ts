@@ -5,8 +5,11 @@ import { GamesListComponent } from './games-list/games-list.component';
 
 const routes: Routes = [
   {
-    // path: 'games',
     path: '', // patch no SSR. TODO remove
+    component: GamesListComponent,
+  },
+  {
+    path: 'games',
     component: GamesListComponent,
   }
 ];
