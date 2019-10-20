@@ -73,11 +73,11 @@
 
 <mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxFill>
 
-  <mat-toolbar-row fxFlex="10" fxLayout="row" fxLayoutAlign="center center">
-    {{pageNr}}/{{totalPages}} ({{totalFound}})
+  <mat-toolbar-row fxFlex="20" fxLayout="row" fxLayoutAlign="center center">
+    <div *ngIf="totalFound">page {{pageNr}} of {{totalPages}} ({{totalFound}} items)</div>
   </mat-toolbar-row>
 
-  <mat-toolbar-row fxFlex="35" fxLayout="row" fxLayoutAlign="center center">
+  <mat-toolbar-row fxFlex="30" fxLayout="row" fxLayoutAlign="center center">
     <div>
       Per page:
     </div>
