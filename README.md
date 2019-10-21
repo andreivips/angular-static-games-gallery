@@ -1,6 +1,7 @@
-![alt text](angular-games-screenshot.jpg)
+[![angular-games][1]][2]
 
-
+[1]:  angular-games-screenshot.jpg
+[2]:  https://andreivips.com/angular-games "andreivips.com/angular-games"
 
 # DataGallery
 
